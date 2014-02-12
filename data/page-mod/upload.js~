@@ -1,0 +1,51 @@
+//Old dog, new tricks
+var myUrl = 'http://www.memrise.com/ajax/thing/cell/upload_file/';
+var uploader = document.getElementById("multi-upload");
+//------------------------------------------------------
+function uploadFile(url, file, obj, token, cookies) {
+
+    var formData = new FormData();
+    formData.append("thing_id",obj.id);
+    formData.append("cell_id",3);
+    formData.append("cell_type","column");
+    formData.append("csrfmiddlewaretoken",token);
+    formData.append("f",file);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader("Cookie",cookies);
+    xhr.send(formData);  // multipart/form-data
+}
+//--------------------------------------------------------
+
+self.port.on("upload", function(obj){
+    document.querySelector('button[id="upload-button"]').addEventListener('click', function(e) {
+            this.innerHTML = "Uploading...";
+            let token = document.cookie.slice(10,42);
+            let cookie = document.cookie;
+            let file_uploaded = 0;
+            for (let i = 0;i<uploader.files.length; ++i) {
+                let file = uploader.files.item(i);
+                let name = file.name.split(".").toLowerCase();
+                if( obj.hasOwnProperty(name) ) {
+                    if(obj[name].hasAudio && self.options.uploadPref){
+                        //
+                    }
+                    else{
+                        uploadFile(myUrl, file, obj[name], token, cookie);
+                        ++file_uploaded;
+                    }
+                    
+                }
+            }
+            if(file_uploaded>0){
+                self.port.emit("Uploaded");
+                this.innerHTML = "Done!";
+                }
+            else{
+                self.port.emit("hasAudio");
+                this.innerrHTML = "Upload!";
+            }
+    }, false);
+});
+
+
