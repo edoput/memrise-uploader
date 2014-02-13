@@ -1,0 +1,19 @@
+{"license": "MIT",
+"description": "Upload matching file to memrise server",
+"contributors": [],
+"author": "EdoPut",
+"url": "", "dependencies": ["api-utils", "addon-kit"],
+"version": "1.1",
+"lib": "lib",
+"fullName": "Memrise Uploader",
+"main": "main",
+"id": "jid0-IWzL6wQdTjbxvpQUSL5mrqoHmrc",
+"name": "memrise-uploader",
+"preferences": [{
+    "name": "allUpload",
+    "title": "Upload preferences",
+    "description": "Do you want to upload only file matching a word without audio?",
+    "type":"bool",
+    "value": true
+    }]
+}

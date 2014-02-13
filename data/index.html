@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html"; charset="UTF-8">
+        <style>
+        body{ height:100%; font-size:0.9em; background-image:url('img/pattern-grey.png');}
+        .deleted {text-decoration:line-through;}
+        #wrapper {margin: 1.5em 15%;}
+        #credit {padding-top:1em;}
+        #footer {display:block; text-align:center; background-color:; width:100%; height:4em;}
+        img {padding:0.5em;}
+        </style>  
+    </head>
+    <body>
+    <div id="wrapper">
+        <div id="content">
+            <h2>How to use Memrise uploader</h2>
+                <p>To use this add-on you just need to go to one of your courses database page and scroll till the bottom until you find a multiple input form with a button labeled "Upload".</p>
+                <img src="img/multiple-button.png" alt="A image of the new form">
+                <p>Choose your files and click upload, Firefox could stops for few seconds but there's nothing wrong with that.</p>
+                <p>Firefox will fire a notification when files have been uploaded. Wait a few second and refresh the page to see your database populated.</p>
+        </div>
+        <div id"FAQ">
+                <h2>F.A.Q</h2>
+                <ul>
+                    <li><b>Does this add-on upload all the files I'm throwing at it?</b><br>
+                    <p>No, it just search for the words without audio, <span class="deleted">the next version will let you choose to upload everything instead</span> if you want to upload every file matching a word go to the addon's prefence page.</p></li>
+                    <li><b>Why audio files don't appear immediately in the database page?</b><br><p>Every time a browser uploads a file to Memrise's server it receives a request to change the page appearence. I simply ignored this request because to me it was useless.</p></li>
+                </ul>
+        </div>
+        <div id="credit">
+            <p>This project code is, and will ever be, avaiable on <a href="https://github.com/EdoPut/Memrise-Uploader">GitHub</a> under the MIT Licence</p>
+            <p> You can find me <a href="mailto:edoardo.putti@gmail.com">by mail</a>, <a href="http://www.github.com/EdoPut">on GitHub</a> or in the forum on memrise, fell free to ask.</p>
+        </div>
+    </div>
+    <div id="footer">
+        <p>Made with &hearts;, JavaScript & CSS</p>
+    </div>
+    </body>
+</html>
