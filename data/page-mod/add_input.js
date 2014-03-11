@@ -1,22 +1,48 @@
-var newForm     = $('<form></form>', {
+
+var newForm = $('<form></form>', {
 	id:'uploader',
-	class: 'full-width center'
+	class: 'full-width center container container-main'
 });
-$('<p></p>').html('Upload audio').appendTo(newForm);
-$('<input>', {
+var table = $('<table></table>', {
+	class: 'table pool-things'
+});
+var line1 = $('<tr></tr>', {
+	class: 'thing'
+});
+var line2 = line1.clone();
+$('<td></td>', {
+	class: 'cell column',
+	'data-cell-type': 'column'
+}).html('Upload audio').appendTo(line1);
+$('<td></td>', {
+	class: 'cell column',
+	'data-cell-type': 'column'
+}).append( $('<input>', {
 	id:'radio_choice',
 	name: 'choice',
 	type: 'radio',
 	value: 'audio',
 	checked: 'checked'
-}).appendTo(newForm);
-$('<p></p>').html('Upload image').appendTo(newForm);
-$('<input>', {
+}) ).appendTo(line1);
+$('<td></td>', {
+	class: 'cell column',
+	'data-cell-type': 'column'
+}).html('Upload image').appendTo(line2);
+$('<td></td>', {
+	class: 'cell column',
+	'data-cell-type': 'column'
+}).append( $('<input>', {
 	id:'radio_choice',
 	name: 'choice',
 	type: 'radio',
-	value: 'photo'
-}).appendTo(newForm);
+	value: 'image'
+}) ).appendTo(line2);
+
+line1.appendTo(table);
+line2.appendTo(table);
+table.appendTo(newForm);
+
+$('<br>').appendTo(newForm);
 $('<input>', {
 	id:'multi-upload',
 	class: 'center',
@@ -24,11 +50,9 @@ $('<input>', {
 	multiple: 'multiple'
 }).appendTo(newForm);
 $('<button></button>', {
-	id:'upload-button',
+	id: 'upload-button',
 	type: 'button',
-	text: 'Click to upload!'
-}).on('click', function(event) {
-	console.log('Click!');
+	text: 'Upload!'
 }).appendTo(newForm);
 
 $('#content').append(newForm);
