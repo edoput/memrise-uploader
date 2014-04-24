@@ -18,7 +18,7 @@ $('<td></td>', {
 	class: 'cell column',
 	'data-cell-type': 'column'
 }).append( $('<input>', {
-	id:'radio_choice',
+	id: 'choice',
 	name: 'choice',
 	type: 'radio',
 	value: 'audio',
@@ -32,7 +32,7 @@ $('<td></td>', {
 	class: 'cell column',
 	'data-cell-type': 'column'
 }).append( $('<input>', {
-	id:'radio_choice',
+	id: 'choice',
 	name: 'choice',
 	type: 'radio',
 	value: 'image'
@@ -53,6 +53,8 @@ $('<button></button>', {
 	id: 'upload-button',
 	type: 'button',
 	text: 'Upload!'
+}).on('click', function () {
+	self.port.emit('upload');
 }).appendTo(newForm);
 
 $('#content').append(newForm);
