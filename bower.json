@@ -1,0 +1,27 @@
+{
+  "name": "memrise-uploader",
+  "version": "0.1.0",
+  "homepage": "https://github.com/EdoPut/memrise-uploader",
+  "authors": [
+    "EdoPut <edoardo.putti@gmail.com>"
+  ],
+  "description": "A sleek addon to upload multiple file to memrise from your browser",
+  "main": "lib/main.js",
+  "keywords": [
+    "addon",
+    "firefox",
+    "memrise"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "zepto": "~1.1.3"
+  }
+}
