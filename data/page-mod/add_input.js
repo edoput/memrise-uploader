@@ -53,7 +53,8 @@ $('<button></button>', {
 	id: 'upload-button',
 	type: 'button',
 	text: 'Upload!'
-}).on('click', function () {
+}).on('click', function (e) {
+	e.preventDefault();
 	self.port.emit('upload');
 }).appendTo(newForm);
 
