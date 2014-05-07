@@ -1,42 +1,42 @@
-function populate (){
+function populate (tipo, callBack) {
     var thing_list      = null;
     var myJson          = {};
     var target_column   = null;
+    if ( $('td').filter(tipo) ) {
+        target_column = $('td').filter(tipo).attr('data-key');
+    } else {
+        self.port.emit("No appropriate column");
+    }
+    thing_list = $('.thing').each(
+        function (index, item) {
+            word = $(this).filter('.text:first').html();
+            myJson[word] = {
+                'word': word,
+                'id': $(this).attr('data-thing-id'),
+                'hasFile': !('disabled' in $(this).filter(tipo).filter('button').attr('class') )
+                }
+            };
+    });
 
-    if(document.querySelector('th[class="column audio"]')){
-        target_column = document.querySelector('th[class="column audio"]').getAttribute("data-key");
-        }
-    else if(document.querySelector('td[class="cell audio column"]'){
-            target_column = document.querySelector('td[class="cell audio column"]').getAttribute("data-key");
-        }
-    else{
-            self.port.emit("No audio column");
-        }
-
-    thing_list = document.getElementsByClassName("thing");
-
-    for(var i = 0, l = thing_list.length; i < l; ++i) {
-        let word    = thing_list[i].children[1].firstChild.children[1].innerHTML.toLowerCase();
-        let id      = thing_list[i].getAttribute("data-thing-id");
-        let file    = null;
-        if( thing_list[i].children[++parseInt(target_column)].firstChild.children[2].className.contains('disabled')){
-            file = false;
-            }
-        else{
-            file = true;
-            }
-        myJson[word] = {"word":word,"id":id,"hasFile": audio};
-        }
-    return myJson;
+    callBack(myJson);
 }
-self.port.on("changed filetype", function(obj){
-    var myWord = populate();
+
+function comunication (myWord) {
     if( Object.getOwnPropertyNames(myWord).length > 0){
         self.port.emit("list populated", myWord);
     }
     else{
         self.port.emit("list empty");
     }
+}
+self.port.on('list_avaiable', function (obj) {
+    populate(obj.tipo, comunication);
 });
 
-
+self.port.on('filetype', function () {
+    if( $('#choice').prop('checked') ) {
+        self.port.emit('audio');
+    } else {
+        self.port.emit('image');
+    }
+});
