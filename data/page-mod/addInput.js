@@ -1,4 +1,5 @@
-
+'use strict';
+console.log('Appending form');
 var newForm = $('<form></form>', {
 	id:'uploader',
 	class: 'full-width center container container-main'
