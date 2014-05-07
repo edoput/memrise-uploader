@@ -3,7 +3,8 @@
 module.exports = function (grunt) {
   [
     'grunt-contrib-jshint',
-    'grunt-contrib-watch'
+    'grunt-contrib-watch',
+    'grunt-mozilla-addon-sdk'
   ].forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
@@ -22,11 +23,14 @@ module.exports = function (grunt) {
       },
       all: [
         'lib/main.js',
-        'data/page-mode/*.js'
+        'data/page-mod/*.js'
       ]
     },
+    "mozilla-addon-sdk": {
+      
+    }
   });
 
-  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('default', ['jshint', 'watch']);
 };
 
