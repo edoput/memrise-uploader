@@ -18,4 +18,10 @@ How to build with NodeJs
 ========================
 
 1. Clone this repository
-2. Wait until new release to have mozilla addon sdk grunt integration (It won't take too long)
+2. npm install
+3. bower install
+4. there are 3 tasks you would want to try
+
+- _default_: a fisrt lint and linting whenever the files changes
+- _release_ : package the addon
+- _pre-release_: load the addon into a new firefox session, load the profile from ~/.local/addon_profile/default
