@@ -8,6 +8,7 @@
   "eqnull": true,
   "immed": true,
   "indent": 2,
+  "jquery": true,
   "latedef": true,
   "maxlen": 80,
   "maxstatements": 20,
@@ -19,6 +20,7 @@
   "undef": true,
   "unused": true,
   "white": true,
+  "worker": true,
   "predef": [
     "define",
     "require",
