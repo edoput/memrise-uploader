@@ -4,8 +4,8 @@ Memrise-Uploader
 A sleek Firefox add-on to permit multiple audio upload on Memrise.
 
 
-How to build
-===============
+How to build without NodeJs
+===========================
 
 1. Clone the [Addon-Sdk](https://github.com/mozilla/addon-sdk) repository
 2. Clone this repository
@@ -13,3 +13,9 @@ How to build
 4. Yo can override my *local.json* file to better fit your necessities, _default_ is:
 run in local firefox, load my developer profile, _nigthly_ is: run nightly (from source), load my developer profile 
 5. run or compile the addon with the cfx tools
+
+How to build with NodeJs
+========================
+
+1. Clone this repository
+2. Wait until new release to have mozilla addon sdk grunt integration (It won't take too long)
