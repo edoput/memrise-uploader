@@ -1,61 +1,73 @@
+'use strict';
 //Old dog, new tricks
 var myUrl = 'http://www.memrise.com/ajax/thing/cell/upload_file/';
-var uploader = document.getElementById("multi-upload");
+var uploader = $('multi-upload:first');
 //------------------------------------------------------
-function uploadFile(url, file, obj, token, cookies, cell_id) {
+function uploadFile(url, file, obj, targetColumn, token, cookie) {
 
     var formData = new FormData();
-    formData.append("thing_id",obj.id);
-    formData.append("cell_id",parseInt(cell_id));
-    formData.append("cell_type","column");
-    formData.append("csrfmiddlewaretoken",token);
-    formData.append("f",file);
+    formData.append(
+        'thing_id',
+        obj.id
+    );
+    formData.append(
+        'cell_id',
+        targetColumn
+    );
+    formData.append(
+        'cell_type',
+        'column'
+    );
+    formData.append(
+        'csrfmiddlewaretoken',
+        token
+    );
+    formData.append(
+        'f',
+        file
+    );
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader("Cookie",cookies);
+    xhr.open(
+        'POST',
+        url,
+        true
+    );
+    xhr.setRequestHeader(
+        'Cookie',
+        cookie
+    );
     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseText);
-        }
-        else{
+        } else {
             console.log(xhr.status);
         }
-    }
+    };
     xhr.send(formData);  // multipart/form-data
 }
 //--------------------------------------------------------
 
-self.port.on("upload", function(obj){
-    document.querySelector('button[id="upload-button"]').addEventListener('click', function(e) {
-        
-            for (let i = 0;i<uploader.files.length; ++i) {
-                file = uploader.files.item(i);
-                var name = file.name.split(["."],[1])[0].toLowerCase();
-                console.log(name);
-                var target_column = null;
+self.port.on('upload', function(obj){
+        $('#upload-button').on( 'click', function (e) {
+            e.preventDefault();
+            let filesToUpload = uploader.files;
+            let numFiles = filesToUpload.length;
+            for (let i = 0; i < numFiles; ++i) {
+                let file = filesToUpload.item(i);
+                let name = file.name.split(['.'],[1])[0].toLowerCase();
                 
-                if( obj.hasOwnProperty(name) ) {
-                    if(obj[name].hasFile){
-                        //
-                    }
-                    else{
-                        if(document.querySelector('th[class="column audio"]')){
-                            target_column = document.querySelector('th[class="column audio"]').getAttribute("data-key");
-                        }
-                        else if(document.querySelector('td[class="cell audio column"]'){
-                            target_column = document.querySelector('td[class="cell audio column"]').getAttribute("data-key");
-                        }
-                        else{
-                            self.port.emit("No audio column");
-                        }
-                        console.log(target_column);
-                        //uploadFile(myUrl, file, obj[name], document.cookie.slice(10,42), document.cookie, target_column);
-                    }
-                    
+                if( obj.hasOwnProperty(name) && !obj[name].hasFile ) {
+                    uploadFile(
+                        myUrl,
+                        file,
+                        obj[name],
+                        obj.targetColumn,
+                        document.cookie.slice(10,42),
+                        document.cookie
+                    );                    
                 }
             }
-            self.port.emit("Uploaded");
-    }, false);
+            self.port.emit('Uploaded');
+    },
+    false);
 });
-
-
