@@ -68,6 +68,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['jshint', 'watch']);
   grunt.registerTask('release', ['mozilla-cfx-xpi']);
-  grunt.registerTask('pre-release', ['mozilla-cfx:run_stable']);
+  grunt.registerTask('pre-release', ['jshint', 'mozilla-cfx:run_stable']);
 };
 
