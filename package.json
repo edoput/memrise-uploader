@@ -1,30 +1,32 @@
 {
-    "license": "MIT", 
-    "name": "memrise-uploader", 
-    "repository": {
-        "url": "https://github.com/EdoPut/memrise-uploader.git", 
-        "type": "git"
-    }, 
-    "author": "Edoardo Putti", 
-    "directories": {
-        "test": "test", 
-        "doc": "doc"
-    }, 
-    "bugs": {
-        "url": "https://github.com/EdoPut/memrise-uploader/issues"
-    }, 
-    "version": "0.0.0", 
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    }, 
-    "devDependencies": {
-        "grunt-contrib-watch": "~0.6.1", 
-        "grunt-contrib-jshint": "~0.10.0", 
-        "grunt": "~0.4.4", 
-        "grunt-mozilla-addon-sdk": "~0.3.2"
-    }, 
-    "main": "lib/main.js", 
-    "homepage": "https://github.com/EdoPut/memrise-uploader", 
-    "id": "jid1-BbtXvcIau6H9hg", 
-    "description": "A sleek addon to upload hundreds of files to memrise's server"
+  "license": "MIT",
+  "name": "memrise-uploader",
+  "repository": {
+    "url": "https://github.com/EdoPut/memrise-uploader.git",
+    "type": "git"
+  },
+  "author": "Edoardo Putti",
+  "directories": {
+    "test": "test",
+    "doc": "doc"
+  },
+  "bugs": {
+    "url": "https://github.com/EdoPut/memrise-uploader/issues"
+  },
+  "version": "1.1.1",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt": "~0.4.4",
+    "grunt-mozilla-addon-sdk": "~0.3.2",
+    "http-post": "~0.1.1",
+    "grunt-execute": "~0.2.1"
+  },
+  "main": "lib/main.js",
+  "homepage": "https://github.com/EdoPut/memrise-uploader",
+  "id": "jid1-BbtXvcIau6H9hg",
+  "description": "A sleek addon to upload hundreds of files to memrise's server"
 }
