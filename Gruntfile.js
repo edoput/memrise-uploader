@@ -4,7 +4,8 @@ module.exports = function (grunt) {
   [
     'grunt-contrib-jshint',
     'grunt-contrib-watch',
-    'grunt-mozilla-addon-sdk'
+    'grunt-mozilla-addon-sdk',
+    'grunt-execute'
   ].forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
@@ -15,6 +16,17 @@ module.exports = function (grunt) {
           'data/page-mod/*.js'
         ],
         tasks: ['jshint']
+      },
+      continuos: {
+        files: [
+          'lib/main.js',
+          'data/page-mod/*.js'
+        ],
+        tasks: [
+          'jshint',
+          'mozilla-cfx-xpi',
+          'execute'
+        ]
       }
     },
     jshint: {
@@ -25,6 +37,11 @@ module.exports = function (grunt) {
         'lib/main.js',
         'data/page-mod/*.js'
       ]
+    },
+    execute: {
+        target: {
+            src: ['publish.js']
+        }
     },
     //Define a mozilla addon-sdk to download and use
     'mozilla-addon-sdk': {
@@ -66,8 +83,9 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', ['jshint', 'watch']);
+  grunt.registerTask('default', ['jshint', 'watch:all']);
   grunt.registerTask('release', ['mozilla-cfx-xpi']);
   grunt.registerTask('pre-release', ['jshint', 'mozilla-cfx:run_stable']);
+  grunt.registerTask('continuos', ['watch:continuos'])
 };
 
