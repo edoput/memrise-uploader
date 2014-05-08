@@ -1,9 +1,8 @@
-'use strict';
-console.log('Appending form');
 var newForm = $('<form></form>', {
-	id:'uploader',
+	id: 'uploader',
 	class: 'full-width center container container-main'
 });
+
 var table = $('<table></table>', {
 	class: 'table pool-things'
 });
@@ -18,13 +17,13 @@ $('<td></td>', {
 $('<td></td>', {
 	class: 'cell column',
 	'data-cell-type': 'column'
-}).append( $('<input>', {
+}).append($('<input>', {
 	id: 'choice',
 	name: 'choice',
 	type: 'radio',
 	value: 'audio',
 	checked: 'checked'
-}) ).appendTo(line1);
+})).appendTo(line1);
 $('<td></td>', {
 	class: 'cell column',
 	'data-cell-type': 'column'
@@ -32,20 +31,20 @@ $('<td></td>', {
 $('<td></td>', {
 	class: 'cell column',
 	'data-cell-type': 'column'
-}).append( $('<input>', {
+}).append($('<input>', {
 	id: 'choice',
 	name: 'choice',
 	type: 'radio',
 	value: 'image'
-}) ).appendTo(line2);
+})).appendTo(line2);
 
 line1.appendTo(table);
 line2.appendTo(table);
 table.appendTo(newForm);
-
 $('<br>').appendTo(newForm);
+
 $('<input>', {
-	id:'multi-upload',
+	id: 'multi-upload',
 	class: 'center',
 	type: 'file',
 	multiple: 'multiple'
@@ -54,9 +53,16 @@ $('<button></button>', {
 	id: 'upload-button',
 	type: 'button',
 	text: 'Upload!'
-}).on('click', function (e) {
+}).appendTo(newForm).on('click', function (e) {
+	'use strict';
 	e.preventDefault();
 	self.port.emit('upload');
-}).appendTo(newForm);
+});
+$('<br><a href="">Help</a>').appendTo(newForm).on('click', function (event) {
+	'use strict';
+	event.preventDefault();
+	self.port.emit('help');
+});
+
 
 $('#content').append(newForm);
