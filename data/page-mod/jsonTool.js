@@ -45,12 +45,6 @@ self.port.on('check', function (data) {
 
 } );
 
-
-
-
-
-
-
 self.port.on('filetype', function () {
     // get asked to return which filetype the user is uploading
     if( $('#choice').prop('checked') ) {
