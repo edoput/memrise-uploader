@@ -47,7 +47,7 @@ function uploadFile(url, file, obj, targetColumn, token, cookie) {
 }
 //--------------------------------------------------------
 
-self.port.on('upload', function(obj){
+self.port.on('list avaible', function(obj){
         $('#upload-button').on( 'click', function (e) {
             e.preventDefault();
             let filesToUpload = uploader.files;
