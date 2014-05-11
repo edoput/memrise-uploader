@@ -4,11 +4,6 @@ function populate(tipo, callBack) {
     var thingList      = null;
     var myJson          = {};
     var targetColumn   = null;
-    if ($('td').filter(tipo)) {
-        targetColumn = $('td').filter(tipo).attr('data-key');
-    } else {
-        self.port.emit('No appropriate column');
-    }
     thingList = $('.thing').each(
         function () {
             let word = $(this).filter('.text').first().html();
@@ -37,6 +32,24 @@ function comunication (myWord) {
 self.port.on('list_avaiable', function (obj) {
     populate(obj.tipo, comunication);
 });
+
+self.port.on('check', function (data) {
+    // search for the correct column to upload
+    if ($('td').filter(data[tipo])) {
+        self.port.emit('targetColumn', {
+            targetColumn : $('td').filter(tipo).attr('data-key')
+        });
+    } else {
+        self.port.emit('No appropriate column');
+    }
+
+} );
+
+
+
+
+
+
 
 self.port.on('filetype', function () {
     // get asked to return which filetype the user is uploading
