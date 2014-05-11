@@ -59,9 +59,9 @@ $('<button></button>', {
 	console.log('click');
 	self.port.emit('upload');
 }).appendTo(newForm);
-$('<br><a href="">Help</a>').appendTo(newForm).on('click', function (event) {
+$('<br><a href="">Help</a>').appendTo(newForm).on('click', function (e) {
 	'use strict';
-	event.preventDefault();
+	e.preventDefault();
 	self.port.emit('help');
 });
 
