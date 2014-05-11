@@ -35,12 +35,12 @@ self.port.on('list_avaiable', function (obj) {
 
 self.port.on('check', function (data) {
     // search for the correct column to upload
-    if ($('td').filter(data[tipo])) {
+    if ($('td').filter(data.tipo)) {
         self.port.emit('targetColumn', {
-            targetColumn : $('td').filter(tipo).attr('data-key')
+            targetColumn : $('td').filter(data.tipo).attr('data-key')
         });
     } else {
-        self.port.emit('No appropriate column');
+        self.port.emit('No appropriate column', data);
     }
 
 } );
