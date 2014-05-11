@@ -1,6 +1,5 @@
 'use strict';
 function populate(tipo, callBack) {
-    console.log($('td').filter(tipo));
     var thingList      = null;
     var myJson          = {};
     thingList = $('.thing').each(
@@ -53,5 +52,5 @@ self.port.on('check', function (data) {
 } );
 
 self.port.on('populate', function (data) {
-    populate(data.tipo, comunication);
+    populate(data.targetColumn, comunication);
 });
