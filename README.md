@@ -1,7 +1,7 @@
 Memrise-Uploader
 ================
 
-A sleek Firefox add-on to permit multiple audio upload on Memrise.
+A sleek Firefox add-on to allow multiple audio upload on Memrise.
 
 
 How to build without NodeJs
