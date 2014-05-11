@@ -39,9 +39,12 @@ self.port.on('list_avaiable', function (obj) {
 });
 
 self.port.on('filetype', function () {
+    // get asked to return which filetype the user is uploading
     if( $('#choice').prop('checked') ) {
+        console.log('audio');
         self.port.emit('audio');
     } else {
         self.port.emit('image');
+        console.log('image');
     }
 });
