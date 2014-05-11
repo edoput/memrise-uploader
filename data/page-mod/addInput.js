@@ -53,11 +53,12 @@ $('<button></button>', {
 	id: 'upload-button',
 	type: 'button',
 	text: 'Upload!'
-}).appendTo(newForm).on('click', function (e) {
+}).on('click', function (e) {
 	'use strict';
 	e.preventDefault();
+	console.log('click');
 	self.port.emit('upload');
-});
+}).appendTo(newForm);
 $('<br><a href="">Help</a>').appendTo(newForm).on('click', function (event) {
 	'use strict';
 	event.preventDefault();
