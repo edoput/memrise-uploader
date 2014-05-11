@@ -1,6 +1,6 @@
   {
       "configs": {
       	"default": ["-p", "~/.local/addon_profile/default"],
-      	"nigthly": ["-b", "/mnt/sdb1/firefox/firefox", "--profiledir", "~/.local/addon_profile/nightly"]
+      	"nigthly": ["-b", "/mnt/sdb1/firefox/firefox", "-p", "~/.local/addon_profile/nightly"]
       }
   }
