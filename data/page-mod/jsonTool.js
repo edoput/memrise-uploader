@@ -3,7 +3,6 @@ function populate(tipo, callBack) {
     console.log($('td').filter(tipo));
     var thingList      = null;
     var myJson          = {};
-    var targetColumn   = null;
     thingList = $('.thing').each(
         function () {
             let word = $(this).filter('.text').first().html();
@@ -29,8 +28,16 @@ function comunication (myWord) {
         self.port.emit('list empty');
     }
 }
-self.port.on('list_avaiable', function (obj) {
-    populate(obj.tipo, comunication);
+
+self.port.on('filetype', function () {
+    // get asked to return which filetype the user is uploading
+    if( $('#choice').prop('checked') ) {
+        console.log('audio');
+        self.port.emit('audio');
+    } else {
+        self.port.emit('image');
+        console.log('image');
+    }
 });
 
 self.port.on('check', function (data) {
@@ -45,13 +52,6 @@ self.port.on('check', function (data) {
 
 } );
 
-self.port.on('filetype', function () {
-    // get asked to return which filetype the user is uploading
-    if( $('#choice').prop('checked') ) {
-        console.log('audio');
-        self.port.emit('audio');
-    } else {
-        self.port.emit('image');
-        console.log('image');
-    }
+self.port.on('populate', function (data) {
+    populate(data.tipo, comunication);
 });
