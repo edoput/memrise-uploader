@@ -1,18 +1,19 @@
 'use strict';
 function populate(targetColumn, callBack) {
     var myJson = {};
-    var thingList = $('.thing').each(
-        function () {
-            let word = $(this).filter('.text').first().html();
-            myJson[word] = {
+    $('.thing').each(
+        function () {            
+            var word = $(this).children().find('.text').first().html();
+
+          /*  myJson[word] = {
                 'word': word,
-                'id': $(this).attr('data-thing-id'),
+                'id': $(this).data('data-thing-id'),
                 'hasFile': !('disabled' in $(this).
-                    filter(tipo).
+                    children()[targetColumn].
                     filter('button').
                     attr('class')
                     )
-                };
+                };*/
         });
 
     callBack(myJson);
