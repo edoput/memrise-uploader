@@ -84,8 +84,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', ['jshint', 'watch:all']);
-  grunt.registerTask('release', ['mozilla-cfx-xpi']);
-  grunt.registerTask('pre-release', ['jshint', 'mozilla-cfx:run_stable']);
-  grunt.registerTask('continuos', ['watch:continuos'])
+  grunt.registerTask('release', ['mozilla-addon-sdk', 'mozilla-cfx-xpi']);
+  grunt.registerTask('pre-release', ['jshint','mozilla-addon-sdk', 'mozilla-cfx:run_stable']);
+  grunt.registerTask('continuos', ['mozilla-addon-sdk', 'watch:continuos'])
 };
 
