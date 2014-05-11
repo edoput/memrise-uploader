@@ -2,18 +2,14 @@
 function populate(targetColumn, callBack) {
     var myJson = {};
     $('.thing').each(
-        function () {            
+        function () {
             var word = $(this).children().find('.text').first().html();
-
-          /*  myJson[word] = {
+            var button = $(this).find('button')[targetColumn - 1];
+            myJson[word] = {
                 'word': word,
                 'id': $(this).data('data-thing-id'),
-                'hasFile': !('disabled' in $(this).
-                    children()[targetColumn].
-                    filter('button').
-                    attr('class')
-                    )
-                };*/
+                'hasFile': !($(button).hasClass('disabled'))
+            };
         });
 
     callBack(myJson);
@@ -31,11 +27,9 @@ function comunication (myWord) {
 self.port.on('filetype', function () {
     // get asked to return which filetype the user is uploading
     if( $('#choice').prop('checked') ) {
-        console.log('audio');
         self.port.emit('audio');
     } else {
         self.port.emit('image');
-        console.log('image');
     }
 });
 
