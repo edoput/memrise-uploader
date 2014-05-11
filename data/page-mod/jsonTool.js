@@ -1,8 +1,7 @@
 'use strict';
-function populate(tipo, callBack) {
-    var thingList      = null;
-    var myJson          = {};
-    thingList = $('.thing').each(
+function populate(targetColumn, callBack) {
+    var myJson = {};
+    var thingList = $('.thing').each(
         function () {
             let word = $(this).filter('.text').first().html();
             myJson[word] = {
