@@ -6,9 +6,7 @@ var newForm = $('<form></form>', {
 var table = $('<table></table>', {
 	class: 'table pool-things'
 });
-var line1 = $('<tr></tr>', {
-	class: 'thing'
-});
+var line1 = $('<tr></tr>', {});
 var line2 = line1.clone();
 $('<td></td>', {
 	class: 'cell column',
