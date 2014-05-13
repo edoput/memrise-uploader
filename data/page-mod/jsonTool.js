@@ -35,15 +35,11 @@ self.port.on('filetype', function () {
 
 self.port.on('check', function (data) {
     // search for the correct column to upload
-    if ($('td').find(data.tipo)) {
+    console.log('we are searching for: ' + data.tipo);
         self.port.emit('targetColumn', {
-            'targetColumn' : $('td').find(data.tipo).attr('data-key')
+            'targetColumn' : $('td').filter(data.tipo).attr('data-key')
         });
-    } else {
-        self.port.emit('No appropriate column', data);
-    }
-
-} );
+});
 
 self.port.on('populate', function (data) {
     populate(data.targetColumn, comunication);
