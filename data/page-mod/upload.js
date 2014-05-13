@@ -38,7 +38,7 @@ function uploadFile(url, file, obj, targetColumn) {
     );
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText);
+            console.log('uploaded');
         } else {
             console.log(xhr.status);
         }
@@ -55,9 +55,9 @@ self.port.on('list avaiable', function (data) {
         // we need a reference to the file currently uploading
         let file = filesToUpload.item(i);
         var name = file.name.split(['.'], [1])[0].toLowerCase();
-        console.log(name);
-        console.log(JSON.stringify(data));
-        if( data.hasOwnProperty(name) && !data[name].hasFile ) {            
+        console.log(self.options.allUpload);
+        var upload = !data[name].hasFile || !self.options.allUpload;
+        if( data.hasOwnProperty(name) && upload) {            
             uploadFile(
                 myUrl,
                 file,
