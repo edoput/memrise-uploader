@@ -25,4 +25,4 @@ How to build with NodeJs
 - _default_ : a fisrt lint and linting whenever the files changes
 - _release_ : package the addon
 - _pre-release_: load the addon into a new firefox session, load the profile from ~/.local/addon_profile/default
-- _continuos_ : this task watch for changes in your files and  publisha new version of your addon every time you save a file; requires [autoinstaller](https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/) to be installed in your Firefox
+~~- _continuos_ : this task watch for changes in your files and  publisha new version of your addon every time you save a file; requires [autoinstaller](https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/) to be installed in your Firefox~~
