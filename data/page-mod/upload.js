@@ -1,9 +1,9 @@
 'use strict';
 //Old dog, new tricks
 var myUrl = 'http://www.memrise.com/ajax/thing/cell/upload_file/';
-var uploader = $('multi-upload:first');
+var targetColumn = null;
 //------------------------------------------------------
-function uploadFile(url, file, obj, targetColumn, token, cookie) {
+function uploadFile(url, file, obj, targetColumn) {
 
     var formData = new FormData();
     formData.append(
@@ -20,7 +20,7 @@ function uploadFile(url, file, obj, targetColumn, token, cookie) {
     );
     formData.append(
         'csrfmiddlewaretoken',
-        token
+        document.cookie.match(/\bcsrftoken=(.{1,32})/)[1]
     );
     formData.append(
         'f',
@@ -34,7 +34,7 @@ function uploadFile(url, file, obj, targetColumn, token, cookie) {
     );
     xhr.setRequestHeader(
         'Cookie',
-        cookie
+        document.cookie
     );
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -47,27 +47,27 @@ function uploadFile(url, file, obj, targetColumn, token, cookie) {
 }
 //--------------------------------------------------------
 
-self.port.on('list avaible', function(obj){
-        $('#upload-button').on( 'click', function (e) {
-            e.preventDefault();
-            let filesToUpload = uploader.files;
-            let numFiles = filesToUpload.length;
-            for (let i = 0; i < numFiles; ++i) {
-                let file = filesToUpload.item(i);
-                let name = file.name.split(['.'],[1])[0].toLowerCase();
-                
-                if( obj.hasOwnProperty(name) && !obj[name].hasFile ) {
-                    uploadFile(
-                        myUrl,
-                        file,
-                        obj[name],
-                        obj.targetColumn,
-                        document.cookie.slice(10,42),
-                        document.cookie
-                    );                    
-                }
-            }
-            self.port.emit('Uploaded');
-    },
-    false);
+self.port.on('list avaiable', function (data) {
+    var uploader = document.getElementById('multi-upload');
+    var filesToUpload = uploader.files;
+    var numFiles = filesToUpload.length;
+    for (let i = 0; i < numFiles; ++i) {
+        // we need a reference to the file currently uploading
+        let file = filesToUpload.item(i);
+        var name = file.name.split(['.'], [1])[0].toLowerCase();
+        console.log(name);
+        console.log(JSON.stringify(data));
+        if( data.hasOwnProperty(name) && !data[name].hasFile ) {            
+            uploadFile(
+                myUrl,
+                file,
+                data[name],
+                targetColumn
+            );
+        }
+    }
+    self.port.emit('Uploaded', data);
+});
+self.port.on('populate', function (data) {
+    targetColumn = data.targetColumn;
 });
