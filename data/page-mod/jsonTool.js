@@ -35,9 +35,9 @@ self.port.on('filetype', function () {
 
 self.port.on('check', function (data) {
     // search for the correct column to upload
-    if ($('td').filter(data.tipo)) {
+    if ($('td').find(data.tipo)) {
         self.port.emit('targetColumn', {
-            targetColumn : $('td').filter(data.tipo).attr('data-key')
+            'targetColumn' : $('td').find(data.tipo).attr('data-key')
         });
     } else {
         self.port.emit('No appropriate column', data);
