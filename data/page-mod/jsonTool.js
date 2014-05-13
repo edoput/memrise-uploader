@@ -7,7 +7,7 @@ function populate(targetColumn, callBack) {
             var button = $(this).find('button')[targetColumn - 1];
             myJson[word] = {
                 'word': word,
-                'id': $(this).data('data-thing-id'),
+                'id': $(this).attr('data-thing-id'),
                 'hasFile': !($(button).hasClass('disabled'))
             };
         });
