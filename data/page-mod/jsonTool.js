@@ -35,10 +35,9 @@ self.port.on('filetype', function () {
 
 self.port.on('check', function (data) {
     // search for the correct column to upload
-    console.log('we are searching for: ' + data.tipo);
-        self.port.emit('targetColumn', {
-            'targetColumn' : $('td').filter(data.tipo).attr('data-key')
-        });
+    self.port.emit('targetColumn', {
+        'targetColumn' : $('td').filter(data.tipo).attr('data-key')
+    });
 });
 
 self.port.on('populate', function (data) {
