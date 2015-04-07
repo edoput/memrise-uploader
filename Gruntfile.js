@@ -47,7 +47,7 @@ module.exports = function (grunt) {
     'mozilla-addon-sdk': {
       '1_16': {
         options: {
-          revision: '1.16',
+          revision: '1.17',
           dest_dir: 'build_tools/'
         }
       }
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
     'mozilla-cfx-xpi': {
       'stable': {
         options: {
-          'mozilla-addon-sdk': '1_16',
+          'mozilla-addon-sdk': '1_17',
           extension_dir: '.',
           dist_dir: 'tmp/dist-stable',
           command: 'xpi',
@@ -66,7 +66,7 @@ module.exports = function (grunt) {
     'mozilla-cfx': {
       'run_stable': {
         options: {
-          'mozilla-addon-sdk': '1_16',
+          'mozilla-addon-sdk': '1_17',
           extension_dir: '.',
           command: 'run',
           arguments: '-p ~/.local/addon_profile/default'
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
       },
       'run_nightly': {
         options: {
-          'mozilla-addon-sdk': '1_16',
+          'mozilla-addon-sdk': '1_17',
           extension_dir: '.',
           command: 'run',
           arguments: '-b /mnt/sdb1/firefox/firefox -p ~/.local/addon_profile/nightly'
