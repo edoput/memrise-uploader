@@ -45,7 +45,7 @@ module.exports = function (grunt) {
     },
     //Define a mozilla addon-sdk to download and use
     'mozilla-addon-sdk': {
-      '1_16': {
+      '1_17': {
         options: {
           revision: '1.17',
           dest_dir: 'build_tools/'
